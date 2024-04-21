@@ -1,5 +1,5 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
 import React, { ReactNode } from "react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 
 interface CardDataStatsProps {
   title: string;

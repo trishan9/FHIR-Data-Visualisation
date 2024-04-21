@@ -6,9 +6,6 @@ const config = {
   app: {
     port: process.env.PORT,
   },
-  bigquery: {
-    datasetId: process.env.DATASET_ID,
-  },
   session: {
     secret: "visualisation-session-secret",
     resave: false,

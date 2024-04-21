@@ -4,61 +4,48 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Allergen</p>;
+      return <p className="pl-0">Allergy</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.code?.text ?? "-"}</p>;
+      return <p>{resource?.DESCRIPTION || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Clinical Status</p>;
+      return <p className="pl-0">Patient</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.clinicalStatus?.coding?.[0]?.display ?? "-"}</p>;
+      return <p>{resource?.PATIENT || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Verification Status</p>;
+      return <p className="pl-0">Type</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.verificationStatus?.coding?.[0]?.display ?? "-"}</p>;
+      return <p className="capitalize">{resource?.TYPE || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Recorded Date</p>;
+      return <p className="pl-0">Category</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.recordedDate ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Reaction</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
       return (
-        <p>
+        <p className="capitalize">
           {/* @ts-ignore */}
-          {resource?.reaction?.map(
-            (reaction: any) =>
-              reaction.manifestation?.[0]?.coding?.[0]?.display ?? "-",
-          )}
+          {resource?.CATEGORY || "-"}
         </p>
       );
     },
@@ -72,9 +59,9 @@ export const columns: ColumnDef<any>[] = [
       const resource = row.getValue("resource");
       //@ts-ignore
       return (
-        <p>
+        <p className="capitalize">
           {/* @ts-ignore */}
-          {resource?.reaction?.map((reaction: any) => reaction.severity ?? "-")}
+          {resource?.SEVERITY1 || "-"}
         </p>
       );
     },

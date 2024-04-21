@@ -5,74 +5,51 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Medication Name</p>;
+      return <p className="pl-0">Encounter</p>;
     },
     cell: ({ row }) => {
-      const medicationName =
-        row.original.resource.code?.coding?.[0]?.display ?? "-";
-      return <p>{medicationName}</p>;
-    },
-  },
-  // {
-  //   accessorKey: "resource",
-  //   header: ({ column }) => {
-  //     return <p className="pl-0">Manufacturer</p>;
-  //   },
-  //   cell: ({ row }) => {
-  //     const manufacturer = row.original.resource.manufacturer?.reference ?? "-";
-  //     return <p>{manufacturer}</p>;
-  //   },
-  // },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Form</p>;
-    },
-    cell: ({ row }) => {
-      const form = row.original.resource.form?.coding?.[0]?.display ?? "-";
-      return <p>{form}</p>;
+      const encounter = row.original.resource.ENCOUNTER || "-";
+      return <p>{encounter}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Ingredients</p>;
+      return <p className="pl-0">Medication</p>;
     },
     cell: ({ row }) => {
-      const ingredients =
-        row.original.resource.ingredient
-          ?.map(
-            (ingredient: any) =>
-              ingredient.itemCodeableConcept?.coding?.[0]?.display,
-          )
-          .join(", ") ?? "-";
-      return <p>{ingredients}</p>;
+      const medicationName = row.original.resource.DESCRIPTION || "-";
+      return <p className="capitalize">{medicationName}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Strength</p>;
+      return <p className="pl-0">Cost</p>;
     },
     cell: ({ row }) => {
-      const strengthNumerator =
-        row.original.resource.ingredient?.[0]?.strength?.numerator?.value ??
-        "-";
-      const unit0 =
-        row.original.resource.ingredient?.[0]?.strength?.numerator?.code ?? "-";
-      const strengthDenominator =
-        row.original.resource.ingredient?.[0]?.strength?.denominator?.value ??
-        "-";
-      const unit =
-        row.original.resource.ingredient?.[0]?.strength?.denominator?.code ??
-        "-";
-      return (
-        <p>
-          {strengthNumerator}
-          {unit0} / {strengthDenominator}
-          {unit}
-        </p>
-      );
+      const cost = row.original.resource.TOTALCOST || "-";
+      return <p>{cost}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Dispenses</p>;
+    },
+    cell: ({ row }) => {
+      const dispenses = row.original.resource.DISPENSES || "-";
+      return <p>{dispenses}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Reason</p>;
+    },
+    cell: ({ row }) => {
+      const reason = row.original.resource.REASONDESCRIPTION || "-";
+      return <p>{reason}</p>;
     },
   },
 ];

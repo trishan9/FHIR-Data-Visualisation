@@ -1,0 +1,282 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model allergies {
+  START        String? @db.VarChar(10)
+  STOP         String? @db.VarChar(50)
+  PATIENT      String? @db.VarChar(50)
+  ENCOUNTER    String? @db.VarChar(50)
+  CODE         BigInt?
+  SYSTEM1      String? @db.VarChar(20)
+  DESCRIPTION  String? @db.VarChar(50)
+  TYPE         String? @db.VarChar(50)
+  CATEGORY     String? @db.VarChar(50)
+  DESCRIPTION1 String? @db.VarChar(50)
+  SEVERITY1    String? @db.VarChar(50)
+  DESCRIPTION2 String? @db.VarChar(50)
+  SEVERITY2    String? @db.VarChar(50)
+  ID           BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model careplans {
+  Id                String  @id @db.VarChar(50)
+  START             String? @db.VarChar(50)
+  STOP              String? @db.VarChar(50)
+  PATIENT           String? @db.VarChar(50)
+  ENCOUNTER         String? @db.VarChar(50)
+  CODE              BigInt?
+  DESCRIPTION       String? @db.VarChar(250)
+  REASONCODE        String? @db.VarChar(50)
+  REASONDESCRIPTION String? @db.VarChar(250)
+}
+
+model claims {
+  Id                          String  @id @db.VarChar(50)
+  PATIENTID                   String? @db.VarChar(50)
+  PROVIDERID                  String? @db.VarChar(50)
+  PRIMARYPATIENTINSURANCEID   String? @db.VarChar(50)
+  SECONDARYPATIENTINSURANCEID String? @db.VarChar(50)
+  DEPARTMENTID                String? @db.VarChar(50)
+  PATIENTDEPARTMENTID         String? @db.VarChar(50)
+  DIAGNOSIS1                  String? @db.VarChar(50)
+  DIAGNOSIS2                  String? @db.VarChar(50)
+  APPOINTMENTID               String? @db.VarChar(50)
+  CURRENTILLNESSDATE          String? @db.VarChar(50)
+  SERVICEDATE                 String? @db.VarChar(50)
+  SUPERVISINGPROVIDERID       String? @db.VarChar(50)
+  STATUS1                     String? @db.VarChar(10)
+  STATUS2                     String? @db.VarChar(10)
+  STATUSP                     String? @db.VarChar(10)
+  OUTSTANDING1                String? @db.VarChar(50)
+  OUTSTANDING2                String? @db.VarChar(10)
+  OUTSTANDINGP                String? @db.VarChar(50)
+  LASTBILLEDDATE1             String? @db.VarChar(50)
+  LASTBILLEDDATE2             String? @db.VarChar(50)
+  LASTBILLEDDATEP             String? @db.VarChar(50)
+  HEALTHCARECLAIMTYPEID1      String? @db.VarChar(50)
+  HEALTHCARECLAIMTYPEID2      String? @db.VarChar(50)
+}
+
+model claims_transactions {
+  ID                    String  @id @db.VarChar(50)
+  CLAIMID               String? @db.VarChar(50)
+  CHARGEID              String? @db.VarChar(50)
+  PATIENTID             String? @db.VarChar(50)
+  TYPE                  String? @db.VarChar(50)
+  AMOUNT                String? @db.VarChar(50)
+  METHOD                String? @db.VarChar(50)
+  FROMDATE              String? @db.VarChar(50)
+  TODATE                String? @db.VarChar(50)
+  PLACEOFSERVICE        String? @db.VarChar(50)
+  PROCEDURECODE         String? @db.VarChar(50)
+  DEPARTMENTID          String? @db.VarChar(50)
+  NOTES                 String? @db.VarChar(250)
+  UNITAMOUNT            String? @db.VarChar(50)
+  TRANSFEROUTID         String? @db.VarChar(50)
+  TRANSFERTYPE          String? @db.VarChar(50)
+  PAYMENTS              String? @db.VarChar(50)
+  TRANSFERS             String? @db.VarChar(50)
+  OUTSTANDING           String? @db.VarChar(50)
+  APPOINTMENTID         String? @db.VarChar(50)
+  LINENOTE              String? @db.VarChar(50)
+  PATIENTINSURANCEID    String? @db.VarChar(50)
+  PROVIDERID            String? @db.VarChar(50)
+  SUPERVISINGPROVIDERID String? @db.VarChar(50)
+}
+
+model conditions {
+  START       String? @db.VarChar(50)
+  STOP        String? @db.VarChar(50)
+  PATIENT     String? @db.VarChar(50)
+  ENCOUNTER   String  @id @db.VarChar(50)
+  CODE        String? @db.VarChar(50)
+  DESCRIPTION String? @db.VarChar(150)
+}
+
+model encounters {
+  Id                  String  @id @db.VarChar(50)
+  START               String? @db.VarChar(50)
+  STOP                String? @db.VarChar(50)
+  PATIENT             String? @db.VarChar(50)
+  ORGANIZATION        String? @db.VarChar(50)
+  PROVIDER            String? @db.VarChar(50)
+  PAYER               String? @db.VarChar(50)
+  ENCOUNTERCLASS      String? @db.VarChar(50)
+  CODE                String? @db.VarChar(10)
+  DESCRIPTION         String? @db.VarChar(150)
+  BASE_ENCOUNTER_COST String? @db.VarChar(50)
+  TOTAL_CLAIM_COST    String? @db.VarChar(50)
+  PAYER_COVERAGE      String? @db.VarChar(50)
+  REASONCODE          String? @db.VarChar(50)
+  REASONDESCRIPTION   String? @db.VarChar(150)
+}
+
+model immunizations {
+  DATE        String? @db.VarChar(20)
+  PATIENT     String? @db.VarChar(50)
+  ENCOUNTER   String? @db.VarChar(50)
+  CODE        String? @db.VarChar(20)
+  DESCRIPTION String? @db.VarChar(250)
+  BASE_COST   String? @db.VarChar(20)
+  ID          BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model medications {
+  START             String? @db.VarChar(20)
+  STOP              String? @db.VarChar(20)
+  PATIENT           String? @db.VarChar(50)
+  PAYER             String? @db.VarChar(50)
+  ENCOUNTER         String? @db.VarChar(50)
+  CODE              String? @db.VarChar(20)
+  DESCRIPTION       String? @db.VarChar(250)
+  BASE_COST         String? @db.VarChar(20)
+  PAYER_COVERAGE    String? @db.VarChar(20)
+  DISPENSES         String? @db.VarChar(20)
+  TOTALCOST         String? @db.VarChar(20)
+  REASONCODE        String? @db.VarChar(20)
+  REASONDESCRIPTION String? @db.VarChar(150)
+  ID                BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model observations {
+  DATE        String? @db.VarChar(20)
+  PATIENT     String? @db.VarChar(50)
+  ENCOUNTER   String? @db.VarChar(50)
+  CATEGORY    String? @db.VarChar(20)
+  CODE        String? @db.VarChar(20)
+  DESCRIPTION String? @db.VarChar(250)
+  VALUE       String? @db.VarChar(150)
+  UNITS       String? @db.VarChar(50)
+  TYPE        String? @db.VarChar(15)
+  ID          BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model organizations {
+  Id          String  @id @db.VarChar(50)
+  NAME        String? @db.VarChar(100)
+  ADDRESS     String? @db.VarChar(50)
+  CITY        String? @db.VarChar(50)
+  STATE       String? @db.VarChar(10)
+  ZIP         String? @db.VarChar(20)
+  LAT         String? @db.VarChar(20)
+  LON         String? @db.VarChar(20)
+  PHONE       String? @db.VarChar(50)
+  REVENUE     String? @db.VarChar(20)
+  UTILIZATION String? @db.VarChar(20)
+}
+
+model patients {
+  Id                  String  @id @db.VarChar(50)
+  BIRTHDATE           String? @db.VarChar(50)
+  DEATHDATE           String? @db.VarChar(50)
+  SSN                 String? @db.VarChar(20)
+  DRIVERS             String? @db.VarChar(20)
+  PASSPORT            String? @db.VarChar(20)
+  PREFIX              String? @db.VarChar(10)
+  FIRST               String? @db.VarChar(20)
+  LAST                String? @db.VarChar(20)
+  SUFFIX              String? @db.VarChar(10)
+  MAIDEN              String? @db.VarChar(20)
+  MARITAL             String? @db.VarChar(5)
+  RACE                String? @db.VarChar(10)
+  ETHNICITY           String? @db.VarChar(20)
+  GENDER              String? @db.VarChar(5)
+  BIRTHPLACE          String? @db.VarChar(100)
+  ADDRESS             String? @db.VarChar(50)
+  CITY                String? @db.VarChar(50)
+  STATE               String? @db.VarChar(50)
+  COUNTY              String? @db.VarChar(50)
+  ZIP                 String? @db.VarChar(20)
+  LAT                 String? @db.VarChar(20)
+  LON                 String? @db.VarChar(20)
+  HEALTHCARE_EXPENSES String? @db.VarChar(20)
+  HEALTHCARE_COVERAGE String? @db.VarChar(20)
+}
+
+model payer_transitions {
+  PATIENT         String? @db.VarChar(50)
+  MEMBERID        String? @db.VarChar(50)
+  START_YEAR      String? @db.VarChar(20)
+  END_YEAR        String? @db.VarChar(20)
+  PAYER           String? @db.VarChar(50)
+  SECONDARY_PAYER String? @db.VarChar(50)
+  OWNERSHIP       String? @db.VarChar(20)
+  OWNERNAME       String? @db.VarChar(50)
+  ID              BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model payers {
+  Id                      String? @db.VarChar(50)
+  NAME                    String? @db.VarChar(50)
+  ADDRESS                 String? @db.VarChar(50)
+  CITY                    String? @db.VarChar(20)
+  STATE_HEADQUARTERED     String? @db.VarChar(10)
+  ZIP                     String? @db.VarChar(20)
+  PHONE                   String? @db.VarChar(20)
+  AMOUNT_COVERED          String? @db.VarChar(20)
+  AMOUNT_UNCOVERED        String? @db.VarChar(20)
+  REVENUE                 String? @db.VarChar(20)
+  COVERED_ENCOUNTERS      String? @db.VarChar(20)
+  UNCOVERED_ENCOUNTERS    String? @db.VarChar(20)
+  COVERED_MEDICATIONS     String? @db.VarChar(20)
+  UNCOVERED_MEDICATIONS   String? @db.VarChar(20)
+  COVERED_PROCEDURES      String? @db.VarChar(20)
+  UNCOVERED_PROCEDURES    String? @db.VarChar(20)
+  COVERED_IMMUNIZATIONS   String? @db.VarChar(20)
+  UNCOVERED_IMMUNIZATIONS String? @db.VarChar(20)
+  UNIQUE_CUSTOMERS        String? @db.VarChar(20)
+  QOLS_AVG                String? @db.VarChar(20)
+  MEMBER_MONTHS           String? @db.VarChar(20)
+  IDs                     BigInt  @id @unique(map: "IDs") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model procedures {
+  START             String? @db.VarChar(20)
+  STOP              String? @db.VarChar(20)
+  PATIENT           String? @db.VarChar(50)
+  ENCOUNTER         String? @db.VarChar(50)
+  CODE              String? @db.VarChar(20)
+  DESCRIPTION       String? @db.VarChar(250)
+  BASE_COST         String? @db.VarChar(20)
+  REASONCODE        String? @db.VarChar(20)
+  REASONDESCRIPTION String? @db.VarChar(150)
+  ID                BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model providers {
+  Id           String  @id @db.VarChar(50)
+  ORGANIZATION String? @db.VarChar(50)
+  NAME         String? @db.VarChar(50)
+  GENDER       String? @db.VarChar(5)
+  SPECIALITY   String? @db.VarChar(50)
+  ADDRESS      String? @db.VarChar(50)
+  CITY         String? @db.VarChar(20)
+  STATE        String? @db.VarChar(5)
+  ZIP          String? @db.VarChar(20)
+  LAT          String? @db.VarChar(20)
+  LON          String? @db.VarChar(20)
+  UTILIZATION  String? @db.VarChar(20)
+}
+
+model supplies {
+  DATE        String? @db.VarChar(20)
+  PATIENT     String? @db.VarChar(50)
+  ENCOUNTER   String? @db.VarChar(50)
+  CODE        String? @db.VarChar(20)
+  DESCRIPTION String? @db.VarChar(250)
+  QUANTITY    String? @db.VarChar(20)
+  ID          BigInt  @id @unique(map: "ID") @default(autoincrement()) @db.UnsignedBigInt
+}
+
+model users {
+  Id       String  @id @unique(map: "Id") @default(uuid()) @db.VarChar(50)
+  Name     String? @db.VarChar(50)
+  Email    String? @db.VarChar(50)
+  Password String? @db.VarChar(500)
+}

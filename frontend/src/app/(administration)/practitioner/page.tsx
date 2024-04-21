@@ -1,10 +1,10 @@
 "use client";
 
-import Practitioner from "@/components/Dashboard/Practitioner";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Practitioner from "@/components/Tables/Practitioner";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-export default function ClinicalPage() {
+export default function PractitionerPage() {
   if (!localStorage.getItem("accessToken")) {
     return redirect("/auth/signin");
   }

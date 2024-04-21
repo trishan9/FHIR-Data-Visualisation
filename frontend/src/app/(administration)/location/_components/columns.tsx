@@ -1,44 +1,30 @@
-import React from "react";
 import { ColumnDef } from "@tanstack/react-table";
 
 export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Location Id</p>;
+      return <p className="pl-0">Patient</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource.id ?? "-"}</p>;
+      return (
+        //@ts-ignore
+        <p>{resource?.Id || "-"}</p>
+      );
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Location</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-
-      //@ts-ignore
-      return <p>{resource.name ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Contact</p>;
+      return <p className="pl-0">Birth Place</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
         <p>
           {/* @ts-ignore */}
-          {resource.telecom?.[0]?.system === "phone"
-            ? //@ts-ignore
-              resource.telecom[0].value
-            : "-"}
+          {resource?.BIRTHPLACE || "-"}
         </p>
       );
     },
@@ -50,27 +36,100 @@ export const columns: ColumnDef<any>[] = [
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
-      //@ts-ignore
-      const address = resource.address;
-      if (!address) return <p>-</p>;
-      const fullAddress = `${address.line?.[0] ?? ""}, ${address.city}, ${address.state} ${address.postalCode}, ${address.country}`;
-      return <p>{fullAddress}</p>;
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.ADDRESS || "-"}
+        </p>
+      );
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Last Modified</p>;
+      return <p className="pl-0">City</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
-        <p className="ml-4">
+        <p>
           {/* @ts-ignore */}
-          {resource.meta?.lastUpdated
-            ? //@ts-ignore
-              resource.meta.lastUpdated.slice(0, 10)
-            : "-"}
+          {resource?.CITY || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">State</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.STATE || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">County</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.COUNTY || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Zip</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.ZIP || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Latitude</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.LAT.slice(0, 6) || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Longitude</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.LON.slice(0, 6) || "-"}
         </p>
       );
     },

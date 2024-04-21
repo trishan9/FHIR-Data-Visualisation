@@ -4,45 +4,12 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Intent</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource?.intent ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Status</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource?.status ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Category</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource?.category?.[0]?.coding?.[0]?.display ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
       return <p className="pl-0">Start Date</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.period?.start ?? "-"}</p>;
+      return <p>{resource?.START || "-"}</p>;
     },
   },
   {
@@ -53,41 +20,51 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.period?.end ?? "-"}</p>;
-    },
-  },
-  // {
-  //   accessorKey: "resource",
-  //   header: ({ column }) => {
-  //     return <p className="pl-0">Subject</p>;
-  //   },
-  //   cell: ({ row }) => {
-  //     const resource = row.getValue("resource");
-  //     //@ts-ignore
-  //     return <p>{resource?.subject?.reference?.split("/")[1] ?? "-"}</p>;
-  //   },
-  // },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Activity</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource?.activity?.[0]?.detail?.code?.text ?? "-"}</p>;
+      return <p>{resource?.STOP || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Location</p>;
+      return <p className="pl-0">Patient</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.activity?.[0]?.detail?.location?.display ?? "-"}</p>;
+      return <p>{resource?.PATIENT || "-"}</p>;
     },
   },
-  // Add more columns as needed
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Code</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      //@ts-ignore
+      return <p>{resource?.CODE || "-"}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Description</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      //@ts-ignore
+      return <p>{resource?.DESCRIPTION || "-"}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Reason</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      //@ts-ignore
+      return <p>{resource?.REASONDESCRIPTION || "-"}</p>;
+    },
+  },
 ];

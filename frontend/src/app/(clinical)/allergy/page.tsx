@@ -1,8 +1,8 @@
 "use client";
 
-import Allergy from "@/components/Dashboard/Allergy";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Allergy from "@/components/Tables/Allergy";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export default function AllergyPage() {
   if (!localStorage.getItem("accessToken")) {

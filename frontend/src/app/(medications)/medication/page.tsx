@@ -1,8 +1,8 @@
 "use client";
 
-import Medication from "@/components/Dashboard/Medication";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Medication from "@/components/Tables/Medication";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export default function MedicationPage() {
   if (!localStorage.getItem("accessToken")) {

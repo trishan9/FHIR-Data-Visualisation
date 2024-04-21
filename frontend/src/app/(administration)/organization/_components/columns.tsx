@@ -11,7 +11,7 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource.name ?? "-"}</p>;
+      return <p>{resource.NAME || "-"}</p>;
     },
   },
   {
@@ -22,18 +22,7 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{(resource.telecom && resource.telecom[0].value) ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Country</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{(resource.address && resource.address[0].country) ?? "-"}</p>;
+      return <p>{resource.PHONE || "-"}</p>;
     },
   },
   {
@@ -44,7 +33,7 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{(resource.address && resource.address[0].city) ?? "-"}</p>;
+      return <p>{resource.CITY || "-"}</p>;
     },
   },
   {
@@ -55,24 +44,18 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{(resource.address && resource.address[0].state) ?? "-"}</p>;
+      return <p>{resource.STATE || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Last Modified</p>;
+      return <p className="pl-0">Address</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
-      return (
-        <p className="ml-4">
-          {
-            //@ts-ignore
-            (resource.meta && resource.meta.lastUpdated.slice(0, 10)) ?? "-"
-          }
-        </p>
-      );
+      //@ts-ignore
+      return <p>{resource.ADDRESS || "-"}</p>;
     },
   },
 ];

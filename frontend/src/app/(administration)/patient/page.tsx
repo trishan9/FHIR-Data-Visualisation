@@ -1,8 +1,8 @@
 "use client";
 
-import Patient from "@/components/Dashboard/Patient";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Patient from "@/components/Tables/Patient";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export default function PatientPage() {
   if (!localStorage.getItem("accessToken")) {

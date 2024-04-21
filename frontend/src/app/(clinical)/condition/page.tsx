@@ -1,10 +1,10 @@
 "use client";
 
-import Condition from "@/components/Dashboard/Condition";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Condition from "@/components/Tables/Condition";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-export default function AllergyPage() {
+export default function ConditionPage() {
   if (!localStorage.getItem("accessToken")) {
     return redirect("/auth/signin");
   }

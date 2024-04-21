@@ -4,12 +4,34 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Status</p>;
+      return <p className="pl-0">Date</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.status ?? "-"}</p>;
+      return <p>{resource?.START.slice(0, 10) || "-"}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Patient</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      //@ts-ignore
+      return <p>{resource?.PATIENT || "-"}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Description</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      //@ts-ignore
+      return <p>{resource?.DESCRIPTION || "-"}</p>;
     },
   },
   {
@@ -20,52 +42,18 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.code?.text ?? "-"}</p>;
+      return <p>{resource?.CODE || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Performed Period</p>;
+      return <p className="pl-0">Base Cost</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      const { performedPeriod } = resource;
-      if (performedPeriod) {
-        const { start, end } = performedPeriod;
-        return (
-          <p>
-            {start ? new Date(start).toLocaleString() : "-"} -{" "}
-            {end ? new Date(end).toLocaleString() : "-"}
-          </p>
-        );
-      } else {
-        return <p>-</p>;
-      }
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Location</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      return <p>{resource?.location?.display ?? "-"}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Reason</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      //@ts-ignore
-      const reason = resource?.reasonReference?.[0]?.display ?? "-";
-      return <p>{reason}</p>;
+      return <p>{resource?.BASE_COST || "-"}</p>;
     },
   },
 ];

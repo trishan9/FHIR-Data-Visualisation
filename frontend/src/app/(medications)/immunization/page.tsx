@@ -1,8 +1,8 @@
 "use client";
 
-import Immunization from "@/components/Dashboard/Immunization";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Immunization from "@/components/Tables/Immunization";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
 export default function ImmunizationPage() {
   if (!localStorage.getItem("accessToken")) {

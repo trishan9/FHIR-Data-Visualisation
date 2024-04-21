@@ -1,10 +1,10 @@
 "use client";
 
-import Organization from "@/components/Dashboard/Organization";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Organization from "@/components/Tables/Organization";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-export default function WorkflowPage() {
+export default function OrganizationPage() {
   if (!localStorage.getItem("accessToken")) {
     return redirect("/auth/signin");
   }

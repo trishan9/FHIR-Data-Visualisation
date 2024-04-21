@@ -8,7 +8,7 @@ export const columns: ColumnDef<any>[] = [
       return <p className="pl-0">Vaccine</p>;
     },
     cell: ({ row }) => {
-      const vaccine = row.original.resource.vaccineCode?.text ?? "-";
+      const vaccine = row.original.resource.DESCRIPTION || "-";
       return <p>{vaccine}</p>;
     },
   },
@@ -18,28 +18,8 @@ export const columns: ColumnDef<any>[] = [
       return <p className="pl-0">Patient</p>;
     },
     cell: ({ row }) => {
-      const patient = row.original.resource.patient?.reference ?? "-";
+      const patient = row.original.resource.PATIENT || "-";
       return <p>{patient}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Status</p>;
-    },
-    cell: ({ row }) => {
-      const status = row.original.resource.status ?? "-";
-      return <p>{status}</p>;
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pl-0">Occurrence Date</p>;
-    },
-    cell: ({ row }) => {
-      const occurrenceDate = row.original.resource.occurrenceDateTime ?? "-";
-      return <p>{occurrenceDate}</p>;
     },
   },
   {
@@ -48,19 +28,28 @@ export const columns: ColumnDef<any>[] = [
       return <p className="pl-0">Encounter</p>;
     },
     cell: ({ row }) => {
-      const encounter = row.original.resource.encounter?.reference ?? "-";
+      const encounter = row.original.resource.ENCOUNTER || "-";
       return <p>{encounter}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Reason</p>;
+      return <p className="pl-0">Base Cost</p>;
     },
     cell: ({ row }) => {
-      const reason =
-        row.original.resource.reasonCode?.[0]?.coding?.[0]?.display ?? "-";
-      return <p>{reason}</p>;
+      const baseCost = row.original.resource.BASE_COST || "-";
+      return <p>{baseCost}</p>;
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Occurrence Date</p>;
+    },
+    cell: ({ row }) => {
+      const occurrenceDate = row.original.resource.DATE.slice(0, 10) || "-";
+      return <p>{occurrenceDate}</p>;
     },
   },
 ];

@@ -4,28 +4,27 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Family Name</p>;
+      return <p className="pl-0">Last Name</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
         //@ts-ignore
-        <p>{(resource?.name?.length && resource?.name[0]?.family) ?? "-"}</p>
+        <p>{resource?.LAST || "-"}</p>
       );
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Given Name</p>;
+      return <p className="pl-0">First Name</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
         <p>
           {/* @ts-ignore */}
-          {(resource?.name?.length && resource?.name[0]?.given?.join(" ")) ??
-            "-"}
+          {resource?.FIRST || "-"}
         </p>
       );
     },
@@ -38,20 +37,80 @@ export const columns: ColumnDef<any>[] = [
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       //@ts-ignore
-      return <p>{resource?.birthDate ?? "-"}</p>;
+      return <p>{resource?.BIRTHDATE || "-"}</p>;
     },
   },
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">Contact</p>;
+      return <p className="pl-0">Gender</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
         <p>
           {/* @ts-ignore */}
-          {(resource?.telecom?.length && resource?.telecom[1]?.value) ?? "-"}
+          {resource?.GENDER || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Race</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.RACE || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Ethnicity</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.ETHNICITY || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Passport</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.PASSPORT || "-"}
+        </p>
+      );
+    },
+  },
+  {
+    accessorKey: "resource",
+    header: ({ column }) => {
+      return <p className="pl-0">Social Security Number</p>;
+    },
+    cell: ({ row }) => {
+      const resource = row.getValue("resource");
+      return (
+        <p>
+          {/* @ts-ignore */}
+          {resource?.SSN || "-"}
         </p>
       );
     },
@@ -66,7 +125,7 @@ export const columns: ColumnDef<any>[] = [
       return (
         <p>
           {/* @ts-ignore */}
-          {(resource?.address?.length && resource?.address[0]?.city) ?? "-"}
+          {resource?.CITY || "-"}
         </p>
       );
     },
@@ -74,32 +133,14 @@ export const columns: ColumnDef<any>[] = [
   {
     accessorKey: "resource",
     header: ({ column }) => {
-      return <p className="pl-0">State</p>;
+      return <p className="pl-0">County</p>;
     },
     cell: ({ row }) => {
       const resource = row.getValue("resource");
       return (
         <p>
           {/* @ts-ignore */}
-          {(resource?.address?.length && resource?.address[0]?.state) ?? "-"}
-        </p>
-      );
-    },
-  },
-  {
-    accessorKey: "resource",
-    header: ({ column }) => {
-      return <p className="pr-0 text-right">Last Modified</p>;
-    },
-    cell: ({ row }) => {
-      const resource = row.getValue("resource");
-      return (
-        <p className="ml-4 text-right">
-          {/* @ts-ignore */}
-          {(resource?.meta?.lastUpdated &&
-            //@ts-ignore
-            resource?.meta?.lastUpdated.slice(0, 10)) ??
-            "-"}
+          {resource?.COUNTY || "-"}
         </p>
       );
     },

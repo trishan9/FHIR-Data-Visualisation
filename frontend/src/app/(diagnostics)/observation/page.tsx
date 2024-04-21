@@ -1,10 +1,10 @@
 "use client";
 
-import Observation from "@/components/Dashboard/Observation";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import { redirect } from "next/navigation";
+import Observation from "@/components/Tables/Observation";
+import DefaultLayout from "@/components/Layouts/DefaultLayout";
 
-export default function FamilyHistoryPage() {
+export default function ObservationPage() {
   if (!localStorage.getItem("accessToken")) {
     return redirect("/auth/signin");
   }
