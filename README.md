@@ -22,7 +22,7 @@ Follow these steps to set up and run the project locally.
 1. Navigate to the backend directory:
    `cd backend`
 2. Install the necessary dependencies:
-   `npm/pnpm/yarn/bun install`
+   `npm/pnpm/bun install / yarn`
 3. Start the server:
    - `npm/pnpm/yarn/bun run dev` (For Development Purpose)
    - `npm/pnpm/yarn/bun start` (For Production Environment)
@@ -57,7 +57,7 @@ CREATE TABLE visualisation.`users` (
 1. Navigate to the frontend directory:
    `cd ../frontend`
 2. Install the necessary dependencies:
-   `npm/pnpm/yarn/bun install`
+   `npm/pnpm/bun install / yarn`
 3. Start the server:
    - `npm/pnpm/yarn/bun run dev` (For Development Purpose)
    - `npm/pnpm/yarn/bun start` (For Production Environment)
